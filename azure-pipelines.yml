@@ -1,0 +1,26 @@
+# trigger:
+#   branches:
+#     include:
+#       - main  # Commented out to disable automatic triggering on branch changes
+
+pool:
+  vmImage: 'windows-latest'  # You can use `ubuntu-latest` if you prefer a Linux environment
+
+variables:
+  azureSubscription: '<Your-Azure-Service-Connection-Name>'
+  resourceGroupName: '<Your-Resource-Group-Name>'
+  location: 'East US'  # Set the default location
+
+steps:
+- task: AzureCLI@2
+  inputs:
+    azureSubscription: $(azureSubscription)
+    scriptType: 'bash'
+    scriptLocation: 'inlineScript'
+    inlineScript: |
+      echo "Deploying Bicep template..."
+      az deployment group create \
+        --resource-group $(resourceGroupName) \
+        --template-file main.bicep \
+        --parameters @main.parameters.json
+    addSpnToEnvironment: true
