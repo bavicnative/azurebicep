@@ -7,8 +7,8 @@ pool:
   vmImage: 'windows-latest'  # You can use `ubuntu-latest` if you prefer a Linux environment
 
 variables:
-  azureSubscription: '<Your-Azure-Service-Connection-Name>'
-  resourceGroupName: '<Your-Resource-Group-Name>'
+  azureSubscription: Pay-As-You-Go
+  resourceGroupName: careerbytecode
   location: 'East US'  # Set the default location
 
 steps:
